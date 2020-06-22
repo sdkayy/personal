@@ -1,31 +1,23 @@
-import Link from "next/link";
 import { useState } from "react";
 
 function Header() {
   const [isExpanded, toggleExpansion] = useState(false);
 
   return (
-    <header className="bg-teal-500">
-      <div className="flex flex-wrap md:flex-no-wrap items-center justify-between max-w-4xl mx-auto p-4 md:p-8">
+    <header className="m-0 bg-purple-700 shadow-lg md:m-6 md:rounded-xl">
+      <div className="flex flex-wrap items-center justify-between max-w-4xl p-4 mx-auto md:flex-no-wrap md:p-8">
         <div className="flex items-center">
-          <img
-            src="tailwind-logo.svg"
-            className="mr-3 text-white w-10"
-          />
-
-          <Link href="/">
-            <a className="font-bold text-white text-xl">
-              Next.js Starter Tailwind
-            </a>
-          </Link>
+          <h1 className="text-xl font-thin text-white">
+            Austin Quinn | Software Engineer
+          </h1>
         </div>
 
         <button
-          className="block md:hidden border border-white flex items-center px-3 py-2 rounded text-white"
+          className="flex items-center block px-3 py-2 text-white border border-white rounded md:hidden"
           onClick={() => toggleExpansion(!isExpanded)}
         >
           <svg
-            className="fill-current h-3 w-3"
+            className="w-3 h-3 fill-current"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -34,22 +26,26 @@ function Header() {
           </svg>
         </button>
 
-        <ul
+        <div
           className={`${
             isExpanded ? `block` : `hidden`
           } md:flex flex-col md:flex-row md:items-center md:justify-center text-sm w-full md:w-auto`}
         >
           {[
-            { title: "Home", route: "/" },
-            { title: "About", route: "/about" }
-          ].map(navigationItem => (
-            <li className="mt-3 md:mt-0 md:ml-6" key={navigationItem.title}>
-              <Link href={navigationItem.route}>
-                <a className="block text-white">{navigationItem.title}</a>
-              </Link>
-            </li>
+            { title: "GitHub", route: "https://github.com/sdkayy" },
+            { title: "Angel", route: "https://angel.co/u/austin-quinn" },
+            { title: "LinkedIn", route: "https://linkedin.com/in/sdkayy" },
+            { title: "Mail", route: "mailto:sdkay@sdkay.pw" }
+          ].map((navigationItem) => (
+            <a
+              className="block p-4 mt-3 font-thin text-white rounded-full cursor-pointer md:mt-0 md:ml-6 hover:bg-white hover:text-black"
+              key={navigationItem.title}
+              href={navigationItem.route}
+            >
+              {navigationItem.title}
+            </a>
           ))}
-        </ul>
+        </div>
       </div>
     </header>
   );
